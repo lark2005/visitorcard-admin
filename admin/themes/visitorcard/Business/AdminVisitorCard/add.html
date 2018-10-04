@@ -1,0 +1,135 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+	        <li class="active"><a href="#A" data-toggle="tab">{:L('GENERAL_SETTING')}</a></li>
+	        <li><a href="#B" data-toggle="tab">{:L('VISITOR_SETTING')}</a></li>
+	        <li><a href="#C" data-toggle="tab">{:L('CARD_SETTING')}</a></li>
+	    </ul>
+		<form class="form-horizontal js-ajax-form" action="{:U('AdminVisitorCard/add_post')}" method="post">
+			<div class="tabbable">
+		        <div class="tab-content">
+		          <div class="tab-pane active" id="A">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('CARD_TITLE')}</label>
+								<div class="controls">
+									<input type="text" name="card_title" value=""><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('LOCATION')}</label>
+								<div class="controls">
+									<input type="text" name="location" value="beijing"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('BANNER_URL')}</label>
+								<div class="controls">
+									<input type="text" name="banner_url" value="http://"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('SHORTCUT')}</label>
+								<div class="controls">
+									<input type="text" name="shortcut" value="//www.XXXXX.com/favicon.ico">
+								</div>
+							</div>
+								
+						</fieldset>
+		          
+				  		<fieldset>
+
+							<div class="control-group">
+								<label class="control-label">{:L('VISITOR_TEMPLATE')}</label>
+								<div class="controls">
+									<php>
+									$visitor_tpls=sp_admin_get_visitcard_tpl_file_list('visitor_tpls');
+									</php>
+				              		<select  name="visitor_tpl">
+				              			<foreach name="visitor_tpls" item="vo">
+				              				<option value="{$vo}">{$vo}{:C("TMPL_TEMPLATE_SUFFIX")}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('CARD_TEMPLATE')}</label>
+								<div class="controls">
+									<php>
+										$card_tpls=sp_admin_get_visitcard_tpl_file_list('card_tpls');
+									</php>
+				              		<select  name="card_tpl">
+				              			<foreach name="card_tpls" item="vo">
+				              				<option value="{$vo}">{$vo}{:C("TMPL_TEMPLATE_SUFFIX")}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('VISITCARD_TEMPLATE')}</label>
+								<div class="controls">
+									<php>
+										$visitcard_tpls=sp_admin_get_visitcard_tpl_file_list('visitcard_tpls');
+									</php>
+				              		<select  name="visitcard_tpl"></option>
+				              			<foreach name="visitcard_tpls" item="vo">
+				              				<option value="{$vo}">{$vo}{:C("TMPL_TEMPLATE_SUFFIX")}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+						</fieldset>
+				  </div>
+		          <div class="tab-pane" id="B">
+						<fieldset>
+						
+							<div class="control-group">
+								<label class="control-label">{:L('filed_company_desc')}</label>
+								<div class="controls">
+									<input type="text" name="filed_company_desc" value="*请填写公司名称"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('filed_name_desc')}</label>
+								<div class="controls">
+									<input type="text" name="filed_name_desc" value="*请填写姓名"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('filed_position_desc')}</label>
+								<div class="controls">
+									<input type="text" name="filed_position_desc" value="*请填写职位"><span class="form-required">*</span>
+								</div>
+							</div>	
+						</fieldset>
+		          </div>
+		          <div class="tab-pane" id="C">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('DIC_CARD')}</label>
+								<div class="controls">
+									<php>
+										$dic_cards=sp_admin_get_dict_cards();
+									</php>
+				              		<select  name="dic_card_id"></option>
+				              			<foreach name="dic_cards" item="vo">
+				              				<option value="{$vo.dic_id}">{$vo.name}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+						</fieldset>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="form-actions">
+		     	<button class="btn btn-primary js-ajax-submit"type="submit">{:L('ADD')}</button>
+		      	<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+		    </div>
+		</form>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

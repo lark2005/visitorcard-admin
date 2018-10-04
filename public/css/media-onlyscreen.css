@@ -1,0 +1,84 @@
+@media only screen {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 330px) and (max-width: 430px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 430px) and (max-width: 530px) {
+    html {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width: 530px) and (max-width: 590px) {
+    html {
+        font-size: 26px;
+    }
+}
+
+@media only screen and (min-width: 590px) and (max-width: 690px) {
+    html {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (min-width: 690px) and (max-width: 760px) {
+    html {
+        font-size: 32px;
+    }
+}
+
+@media only screen and (min-width: 760px) and (max-width: 840px) {
+    html {
+        font-size: 34px;
+    }
+}
+
+@media only screen and (min-width: 840px) and (max-width: 920px) {
+    html {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (min-width: 920px) and (max-width: 1000px) {
+    html {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+    html {
+        font-size: 56px;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+    html {
+        font-size: 56px;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    html {
+        font-size: 58px;
+    }
+}
+
+#mediaCssFooterCss {
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 0;
+}

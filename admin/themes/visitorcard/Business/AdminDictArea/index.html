@@ -1,0 +1,136 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('AdminDictArea/index')}">{:L('PORTAL_ADMINTERM_INDEX')}</a></li>
+			<li><a href="{:U('AdminDictArea/add')}">{:L('PORTAL_ADMINTERM_ADD')}</a></li>
+		</ul>
+		
+		<form class="well form-search" method="post" action="{:U('AdminDictArea/index')}">
+
+			{:L('AREA_TYPE')}:
+			<select name="query_areaType" style="width: 150px;" id = "query_areaType">
+				<volist name="areaTypes" id="vo">
+					<php>
+					$level_selected=$query_areaType==$key?"selected":"";
+					</php>
+				    <option value="{$key}" {$level_selected}>{$vo}</option>
+				</volist>
+			</select>
+			上一级:
+			<select name="query_parent" style="width: 150px;" id="query_parent">
+				<option value="" selected="selected">-请选择-</option>
+				<volist name="result_parentArea" id="vo">
+					<php>
+					$parent_selected=$query_parent==$vo['area_id']?"selected":"";
+					</php>
+				    <option value="{$vo['area_id']}" {$parent_selected}>{$vo['name']}</option>
+				</volist>
+			</select>
+			{:L('AREA_CODE')}:
+			<input type="text" name="query_areaCode" style="width: 100px;" value="{:I('request.query_areaCode/s','')}" placeholder="{:L('AREA_CODE')}">
+			
+            {:L('AREA_NAME')}:
+            <input type="text" name="query_areaName" style="width: 100px;" value="{:I('request.query_areaName/s','')}" placeholder="{:L('QUERY_AREA_NAME')}">
+			
+			<php>
+				$hasChildren = $query_hasChildren=='1' ? "checked" : "";
+			</php>
+			<!--  <input type="checkbox" name="query_hasChildren" value="1" {$hasChildren} />包含下级
+			-->
+			
+
+            <input type="submit" class="btn btn-primary" value="搜索" />
+            <a class="btn btn-danger" href="{:U('AdminDictArea/index')}">清空</a>
+        </form>
+		
+		
+		<form method="post" class="js-ajax-form" action="{:U('AdminDictArea/listorders')}">
+			<div class="table-actions">
+				<button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+			</div>
+			<table class="table table-hover table-bordered table-list" id="menus-table">
+				<thead>
+					<tr>
+						
+						<th width="50">{:L('SORT')}</th>
+						<th width="50">{:L('INDEX')}</th>
+						
+						<th>{:L('AREA_NAME')}</th>
+						<th>{:L('AREA_CODE')}</th>
+						<th>{:L('AREA_SHORT_NAME')}</th>
+						<th>{:L('AREA_TYPE')}</th>
+						<th>{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{$taxonomys}
+				</tbody>
+				<tfoot>
+					<tr>
+						
+						<th width="50">{:L('SORT')}</th>
+						<th width="50">{:L('INDEX')}</th>
+						
+						<th>{:L('AREA_NAME')}</th>
+						<th>{:L('AREA_CODE')}</th>
+						<th>{:L('AREA_SHORT_NAME')}</th>
+						<th>{:L('AREA_TYPE')}</th>
+						<th>{:L('ACTIONS')}</th>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="table-actions">
+				<button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+		<script>
+		$(document).ready(function() {
+		/*
+			Wind.css('treeTable');
+			Wind.use('treeTable', function() {
+				$("#menus-table").treeTable({
+					indent : 20
+				});
+			});
+			*/
+			$('#query_areaType').change("change", selectParent);
+		});
+		
+        function selectParent() {
+            $("#query_parent").html("");
+            $("#query_parent").append("<option value=\"\">-请选择-</option>");
+			
+			// 判断当前级别
+			if($('#query_areaType').val()){
+				var parentType = $('#query_areaType').val()-1;
+				$.ajax(
+				{
+					type: "post",
+					url: "__WEB_ROOT__/Api/cityArea/getJson",
+					data: { "type": parentType},
+					success: function (msg) {
+						var areas = eval(msg);
+						for (var i = 0; i < areas.length; i++) {
+							$("#query_parent").append("<option value=" + areas[i].area_id + ">" + areas[i].name + "</option>");
+						}
+					}
+				})
+			}
+        };
+		
+		
+
+		setInterval(function() {
+			var refersh_time = getCookie('refersh_time_admin_menu_index');
+			if (refersh_time == 1) {
+				reloadPage(window);
+			}
+		}, 1000);
+		setCookie('refersh_time_admin_menu_index', 0);
+	</script>
+</body>
+</html>

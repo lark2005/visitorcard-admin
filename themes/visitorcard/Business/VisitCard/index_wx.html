@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<?php
+$wx_appid = "wxe873053fa2eb062c";
+$wx_redirect_uri="http://vistorcard.larkersos.com/index.php?g=business&m=visitCard&a=index&id=1";
+
+	$oauth2CodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$wx_appid."&redirect_uri=".$wx_redirect_uri."&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+	
+	echo '<script language="javascript">';
+	echo 'document.location="'.$oauth2CodeUrl.'"';
+	echo '</script>';
+?>

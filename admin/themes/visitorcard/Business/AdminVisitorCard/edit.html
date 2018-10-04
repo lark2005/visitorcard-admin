@@ -1,0 +1,175 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+	        <li class="active"><a href="#A" data-toggle="tab">{:L('GENERAL_SETTING')}</a></li>
+	        <li><a href="#B" data-toggle="tab">{:L('VISITOR_SETTING')}</a></li>
+	        <li><a href="#C" data-toggle="tab">{:L('CARD_SETTING')}</a></li>
+	    </ul>
+		<form class="form-horizontal js-ajax-form" action="{:U('AdminVisitorCard/edit_post')}" method="post">
+		<input type="hidden" name="id" value="{$data.id}" />
+			<div class="tabbable">
+		        <div class="tab-content">
+		          <div class="tab-pane active" id="A">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('CARD_TITLE')}</label>
+								<div class="controls">
+									<input type="text" name="card_title" value="{$data.card_title}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('LOCATION')}</label>
+								<div class="controls">
+									<input type="text" name="location" value="{$data.location}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('SHORTCUT')}</label>
+								<div class="controls">
+									<input type="text" name="shortcut" value="{$data.shortcut}">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('BANNER_URL')}</label>
+								<div class="controls">
+									<input type="text" name="banner_url" value="{$data.banner_url}"><span class="form-required">*</span>
+								</div>
+							</div>
+								
+						</fieldset>
+		          
+				  		<fieldset>
+
+							<div class="control-group">
+								<label class="control-label">{:L('VISITOR_TEMPLATE')}</label>
+								<div class="controls">
+									<php>
+									$visitor_tpls=sp_admin_get_visitcard_tpl_file_list('visitor_tpls');
+									</php>
+				              		<select  name="visitor_tpl">
+										<option value="" >--</option>
+				              			<foreach name="visitor_tpls" item="vo">
+										<php>
+										$visitor_tpls_selected=$data['visitor_tpl']==$vo?"selected":"";
+										</php>
+
+				              				<option value="{$vo}" {$visitor_tpls_selected}>{$vo}{:C("TMPL_TEMPLATE_SUFFIX")}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('CARD_TEMPLATE')}</label>
+								<div class="controls">
+									<php>
+										$card_tpls=sp_admin_get_visitcard_tpl_file_list('card_tpls');
+									</php>
+				              		<select  name="card_tpl">
+				              			<foreach name="card_tpls" item="vo">
+										<php>
+										$card_tpls_selected=$data['card_tpl']==$vo?"selected":"";
+										</php>
+				              				<option value="{$vo}" {$card_tpls_selected}>{$vo}{:C("TMPL_TEMPLATE_SUFFIX")}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('VISITCARD_TEMPLATE')}</label>
+								<div class="controls">
+									<php>
+										$visitcard_tpls=sp_admin_get_visitcard_tpl_file_list('visitcard_tpls');
+									</php>
+				              		<select  name="visitcard_tpl"></option>
+				              			<foreach name="visitcard_tpls" item="vo">
+										<php>
+										$visitcard_tpls_selected=$data['visitcard_tpl']==$vo?"selected":"";
+										</php>
+				              				<option value="{$vo}" {$visitcard_tpls_selected}>{$vo}{:C("TMPL_TEMPLATE_SUFFIX")}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('STATUS')}</label>
+								<div class="controls">
+				              		<select name="status"></option>
+										<php>
+										$open_selected = $data['status']==1 ? "selected" :"";
+										$close_selected = $data['status']==0 ? "selected" :"";
+										</php>
+										<option value="1" {$open_selected}>{:L('OPEN')}</option>
+										<option value="0" {$close_selected}>{:L('CLOSE')}</option>
+				              		</select>
+								</div>
+							</div>
+						</fieldset>
+				  </div>
+		          <div class="tab-pane" id="B">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('page1_title')}</label>
+								<div class="controls">
+									<input type="text" name="page1_title" value="{$data.page1_title}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('filed_company_desc')}</label>
+								<div class="controls">
+									<input type="text" name="filed_company_desc" value="{$data.filed_company_desc}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('filed_name_desc')}</label>
+								<div class="controls">
+									<input type="text" name="filed_name_desc" value="{$data.filed_name_desc}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('filed_position_desc')}</label>
+								<div class="controls">
+									<input type="text" name="filed_position_desc" value="{$data.filed_position_desc}"><span class="form-required">*</span>
+								</div>
+							</div>	
+
+						</fieldset>
+		          </div>
+		          <div class="tab-pane" id="C">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('page2_title')}</label>
+								<div class="controls">
+									<input type="text" name="page2_title" value="{$data.page2_title}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('DIC_CARD')}</label>
+								<div class="controls">
+									<php>
+										$dic_cards=sp_admin_get_dict_cards();
+									</php>
+				              		<select name="dic_card_id"></option>
+				              			<foreach name="dic_cards" item="vo">
+										<php>
+										$dic_cards_selected = $data['dic_card_id']==$vo['dic_id'] ? "selected" :"";
+										</php>
+				              				<option value="{$vo.dic_id}" {$dic_cards_selected}>{$vo.name}</option>
+				              			</foreach>
+				              		</select>
+								</div>
+							</div>
+						</fieldset>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="form-actions">
+		     	<button class="btn btn-primary js-ajax-submit"type="submit">{:L('SAVE')}</button>
+		      	<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+		    </div>
+		</form>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

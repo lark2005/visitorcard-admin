@@ -1,0 +1,81 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('AdminVisitorCard/index')}">{:L('ADMIN_VISITOR_CARD_INDEX')}</a></li>
+			<li><a href="{:U('AdminVisitorCard/add')}">{:L('ADMIN_VISITOR_CARD_ADD')}</a></li>
+			
+		</ul>
+        <form class="well form-search" method="post" action="{:U('AdminVisitorCard/index')}">
+            {:L('CARD_TITLE')}:
+            <input type="text" name="query_card_title" style="width: 300px;" value="{:I('request.query_card_title/s','')}" placeholder="{:L('QUERY_CARD_TITLE')}">
+ 			
+            <input type="submit" class="btn btn-primary" value="搜索" />
+            <a class="btn btn-danger" href="{:U('AdminVisitorCard/index')}">清空</a>
+        </form>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th>{:L('CARD_TITLE')}</th>
+					<th>{:L('LOCATION')}</th>
+					<th>{:L('CREATE_TIME')}</th>
+					<th>{:L('UPDATE_TIME')}</th>
+					<th>{:L('STATUS')}</th>
+					
+					<th width="120">{:L('ACTIONS')}</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<php>$user_statuses=array("0"=>L('USER_STATUS_BLOCKED'),"1"=>L('USER_STATUS_ACTIVATED'),"2"=>L('USER_STATUS_UNVERIFIED'));</php>
+				<foreach name="items" item="vo">
+				<tr>
+					<td>{$vo.id}</td>
+					<td>
+						<a href="{:leuu('business/visitCard/index',array('id'=>$vo['id'],'cid'=>$term['term_id']))}" target="_blank">
+						{$vo.card_title}
+						</a>
+					</td>
+					<td>{$vo.location}</td>
+					<td>
+						<if condition="$vo['create_time'] eq 0">
+							{:L('CREATE_TIME')}
+						<else />
+							{$vo.create_time}
+						</if>
+					</td>
+					<td>
+						<if condition="$vo['update_time'] eq 0">
+							{:L('UPDATE_TIME')}
+						<else />
+							{$vo.update_time}
+						</if>
+					</td>
+					<td>
+						<if condition="$vo['status'] eq 0">
+							{:L('CLOSE')}
+						<else />
+							{:L('OPEN')}
+						</if>
+					</td>
+					
+					<td>
+						<a href='{:U("AdminVisitorCard/edit",array("id"=>$vo["id"]))}'>{:L('EDIT')}</a> 
+						<if condition="$vo['status'] eq 1">							
+							| <a href="{:U('AdminVisitorCard/delete',array('id'=>$vo['id'],'status'=>0))}" class="js-ajax-delete">{:L('CLOSE')}</a>
+						<else />
+							<!-- {:L('OPEN')} -->
+						</if>
+					</td>
+					
+				</tr>
+				</foreach>
+			</tbody>
+		</table>
+		<div class="pagination">{$page}</div>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

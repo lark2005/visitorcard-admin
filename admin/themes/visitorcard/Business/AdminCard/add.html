@@ -1,0 +1,68 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+	        <li class="active"><a href="#A" data-toggle="tab">{:L('GENERAL_SETTING')}</a></li>
+	    </ul>
+		<form class="form-horizontal js-ajax-form" action="{:U('AdminCard/add_post')}" method="post">
+			<div class="tabbable">
+		        <div class="tab-content">
+		          <div class="tab-pane active" id="A">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('PARENT')}</label>
+								<div class="controls">
+									<select name="parent">
+										<option value="0">{:L('ROOT')}</option>
+										{$terms_tree}
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('DIC_CODE')}</label>
+								<div class="controls">
+									<input type="text" name="code" value=""><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('DIC_NAME')}</label>
+								<div class="controls">
+									<input type="text" name="name" value=""><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('CATEGORY_DESCRIPTION')}</label>
+								<div class="controls">
+									<textarea name="description" rows="5" cols="57"></textarea>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('DIC_TYPE')}</label>
+								<div class="controls">
+									<select name="taxonomy">
+										<foreach name="taxonomys" item="vo">
+								        	<option value="{$key}">{$vo}</option>
+										</foreach>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('DIC_VALUE')}</label>
+								<div class="controls">
+									<input type="text" name="value" value="">
+								</div>
+							</div>
+						</fieldset>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="form-actions">
+		     	<button class="btn btn-primary js-ajax-submit"type="submit">{:L('ADD')}</button>
+		      	<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+		    </div>
+		</form>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

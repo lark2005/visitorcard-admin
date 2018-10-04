@@ -1,0 +1,89 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('AdminDictCard/index')}">{:L('PORTAL_ADMINTERM_INDEX')}</a></li>
+			<li><a href="{:U('AdminDictCard/add')}">{:L('PORTAL_ADMINTERM_ADD')}</a></li>
+		</ul>
+		
+		<form class="well form-search" method="post" action="{:U('AdminDictCard/index')}">
+            {:L('DIC_NAME')}:
+			<select name="query_dic" style="width: 300px;">
+				<option value="" >&nbsp;&nbsp;--请选择--</option>
+				<foreach name="dictCards" item="vo">
+					<php>
+					$path_selected=$query_dic==$vo[path]?"selected":"";
+					</php>
+				    <option value="{$vo.path}" {$path_selected}>{$vo.name}</option>
+				</foreach>
+			</select> 
+
+ 			
+            <input type="submit" class="btn btn-primary" value="搜索" />
+            <a class="btn btn-danger" href="{:U('AdminDictCard/index')}">清空</a>
+        </form>
+		
+		
+		<form method="post" class="js-ajax-form" action="{:U('AdminDictCard/listorders')}">
+			<div class="table-actions">
+				<button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+			</div>
+			<table class="table table-hover table-bordered table-list" id="menus-table">
+				<thead>
+					<tr>
+						<th width="50">ID</th>
+						<th width="50">{:L('SORT')}</th>
+						
+						<th>{:L('DIC_NAME')}</th>
+						<th>{:L('DIC_CODE')}</th>
+						<th>{:L('DIC_TYPE')}</th>
+						<th>{:L('DIC_VALUE')}</th>
+						<th>{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{$taxonomys}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th width="50">ID</th>
+						<th width="50">{:L('SORT')}</th>
+						
+						<th>{:L('DIC_NAME')}</th>
+						<th>{:L('DIC_CODE')}</th>
+						<th>{:L('DIC_TYPE')}</th>
+						<th>{:L('DIC_VALUE')}</th>
+						
+						<th>{:L('ACTIONS')}</th>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="table-actions">
+				<button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+		<script>
+		$(document).ready(function() {
+		/*
+			Wind.css('treeTable');
+			Wind.use('treeTable', function() {
+				$("#menus-table").treeTable({
+					indent : 20
+				});
+			});
+			*/
+		});
+
+		setInterval(function() {
+			var refersh_time = getCookie('refersh_time_admin_menu_index');
+			if (refersh_time == 1) {
+				reloadPage(window);
+			}
+		}, 1000);
+		setCookie('refersh_time_admin_menu_index', 0);
+	</script>
+</body>
+</html>

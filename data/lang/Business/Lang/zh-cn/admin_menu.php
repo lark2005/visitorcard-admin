@@ -1,0 +1,10 @@
+<?php
+return array (
+  'BUSINESS_ADMINDICTAREA_INDEX' => '城市字典管理',
+  'BUSINESS_ADMINDICTCARD_INDEX' => '参观卡填写项卡管理',
+  'BUSINESS_ADMINDICTIONARY_INDEX' => '业务字典维护',
+  'BUSINESS_ADMINVISITOR_INDEX' => '参观用户管理',
+  'BUSINESS_ADMINVISITORCARD_INDEX' => '参观证信息管理',
+  'BUSINESS_VISITORCARD_INDEX' => '参观证登记',
+  'BUSINESS_MODELS_DEFAULT' => '业务模型',
+);

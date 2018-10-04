@@ -1,0 +1,52 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+	        <li class="active"><a href="#A" data-toggle="tab">{:L('GENERAL_SETTING')}</a></li>
+	    </ul>
+		<form class="form-horizontal js-ajax-form" action="{:U('AdminDictArea/add_post')}" method="post">
+			<div class="tabbable">
+		        <div class="tab-content">
+		          <div class="tab-pane active" id="A">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('PARENT')}</label>
+								<div class="controls">
+									<select name="parent">
+										{$option_parent}
+										<option value="0">{:L('ROOT')}</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('AREA_CODE')}</label>
+								<div class="controls">
+									<input type="text" name="code" value=""><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('AREA_NAME')}</label>
+								<div class="controls">
+									<input type="text" name="name" value=""><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('AREA_SHORT_NAME')}</label>
+								<div class="controls">
+									<input type="text" name="short_name" value=""><span class="form-required">*</span>
+								</div>
+							</div>
+						</fieldset>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="form-actions">
+		     	<button class="btn btn-primary js-ajax-submit"type="submit">{:L('ADD')}</button>
+		      	<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+		    </div>
+		</form>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

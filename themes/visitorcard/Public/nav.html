@@ -1,0 +1,21 @@
+{:hook('body_start')}
+<div class="navbar navbar-fixed-top">
+   <div class="navbar-inner">
+     <div class="container">
+       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </a>
+	 <div class="topNav-logo"> 
+	 <?php
+       if (!empty($site_logo)) {
+			echo "<a href=\"__ROOT__/\"><img src=\"".$site_logo."\"/></a>";
+       }else{
+			echo '<a href="__ROOT__/"><img src="__TMPL__Public/assets/images/logo.png"/></a>';
+       }
+	   ?>
+     </div>
+     </div>
+   </div>
+ </div>

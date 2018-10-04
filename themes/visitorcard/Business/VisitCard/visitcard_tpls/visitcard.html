@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head id="Head1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta charset="utf-8">
+	<meta name="Author" content="larker">
+	<title>
+		{$cardSetting.card_title}
+	</title>
+	<link rel="apple-touch-icon" href="{$cardSetting.shortcut}">
+	<link rel="shortcut icon" href="{$cardSetting.shortcut}">
+	<link href="__TMPL__Public/assets/css/vistcard.css"  rel="stylesheet" type="text/css">
+	<script src="__PUBLIC__/css/media.css"></script>
+	<script src="__PUBLIC__/js/jquery.js"></script>
+	
+    <style type="text/css">
+
+    </style>
+    <script language="javascript" type="text/javascript">
+		
+        $(document).ready(function () {
+                //select1();
+                // $('#S1').change("change", select2);
+                // $('#S2').change("change", select3);
+
+        });
+    </script>
+    <script type="text/javascript">
+
+        function checkform() {
+
+            var company = document.getElementById("company").value.trim();
+            if (company == '') {
+                alert('{$cardSetting.filed_company_desc}');
+                document.getElementById("company").focus();
+                return false;
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+<div class="main">
+<if condition="!empty($cardSetting.banner_url)">	
+    <!-- 轮播广告 -->
+    <div id="owl-demo" style="opacity: 1; display: block;">
+        <img src="{$cardSetting.banner_url}" style="width:100%"></div>
+	</div>
+</if>	
+	<div class="my-card">
+		<div class="bmcg">
+			<div class="bmcg-title">恭喜你报名成功</div>
+			<div  class="bmcg-hint">请妥善保存本页面，展会现场出示直接入场</div>
+		</div>
+
+		<div class="bmcg">
+			<div class="bmcg-name">{$visitor.name}</div>
+			<div class="bmcg-company">{$visitor.company}</div>
+		</div>
+		<div class="bmcg">
+			 <div class="bmcg-erwm">
+			 <php>
+				qrcode_show('['.$visitor['name']."][".$visitor['company']."][".substr_replace($visitor['mobile'],'****',3,4)."]",$visitor['mobile']);
+			 </php>
+			 </div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

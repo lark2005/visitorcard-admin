@@ -1,0 +1,59 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#A" data-toggle="tab">{:L('GENERAL_SETTING')}</a></li>
+		</ul>
+		<form class="form-horizontal js-ajax-form" action="{:U('AdminDictArea/edit_post')}" method="post">
+			<input type="hidden" name="area_id" value="{$data.area_id}" />
+			<div class="tabbable">
+				<div class="tab-content">
+					<div class="tab-pane active" id="A">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">{:L('PARENT')}</label>
+								<div class="controls">
+									<select name="parent" >
+										<option value="{$parent['area_id']}">{$parent['name']}</option> 
+									</select>
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label">{:L('AREA_CODE')}</label>
+								<div class="controls">
+									<input type="text" name="code" value="{$data.code}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('AREA_NAME')}</label>
+								<div class="controls">
+									<input type="text" name="name" value="{$data.name}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('AREA_SHORT_NAME')}</label>
+								<div class="controls">
+									<input type="text" name="short_name" value="{$data.short_name}"><span class="form-required">*</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('AREA_SHORT_NAME')}(ENGLISH)</label>
+								<div class="controls">
+									<input type="text" name="short_name_en" value="{$data.short_name_en}"><span class="form-required">*</span>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button class="btn btn-primary js-ajax-submit" type="submit">{:L('SAVE')}</button>
+				<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>
