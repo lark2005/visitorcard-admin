@@ -67,7 +67,7 @@
                         <input class="form-control" type="text" id="vcode" name="vcode" placeholder="验证码" value="" onfocus="this.value=''" onblur="if(this.value=='')this.value=''"/>
                         </div>
                         <div class="col-xs-8" >
-                            <label style="padding: 5px" id="msg_send_button" title="发送验证码" >发送验证码</label>
+                            <label style="padding: 5px;background-color: #d7d7d7;" id="msg_send_button" title="发送验证码" >发送验证码</label>
                         </div>
                     </div>
                     <input id="hidCountryFlag" value="" type="hidden">
@@ -75,7 +75,7 @@
                         重要信息，请认真填写。
                     </div>
                     <div class="form-group ">
-                            <input class="btn btn-primary form-control" name="linkBtn" value="下一步" onclick="return checkform();" id="linkBtn">
+                            <input class="btn btn-primary form-control" type="submit" name="linkBtn" value="下一步" onclick="return checkform();" id="linkBtn">
                     </div>
 
                 </div>
@@ -150,7 +150,6 @@
             return false;
         }
         var userCountry = document.getElementById("country").value.trim();
-        userTel
         var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
         var regMobileOther = /^[0-9]{6,11}$/;
 
@@ -161,7 +160,7 @@
                 alert("请输入正确的手机号码");
                 document.getElementById("mobile").focus();
                 return false;
-            };
+            }
         }
         else if (userCountry != "中国") {
             if (regMobileOther.test(userTel)) {
@@ -285,7 +284,7 @@
         $.ajax(
                 {
                     type: "post",
-                    url: "__WEB_ROOT__/Api/cityArea/getJson",
+                    url: "__WEB_ROOT__/index.php?g=api&m=cityArea&a=getJson",
                     data: { "parent": "0","type": "0"},
                     success: function (msg) {
                         var areas = eval(msg);
@@ -300,11 +299,11 @@
 
     function select2() {
         $("#S2").html("");
-        $("#S2").append("<option value=\"\">-请选择-</option>");
+        $("#S2").append("<option value=\"\"> 请选择 </option>");
         $.ajax(
                 {
                     type: "post",
-                    url: "__WEB_ROOT__/Api/cityArea/getJson",
+                    url: "__WEB_ROOT__/index.php?g=api&m=cityArea&a=getJson",
                     data: { "type": "1", "parent": $('#S1').val() },
                     success: function (msg) {
                         var areas = eval(msg);
@@ -318,14 +317,14 @@
 
     function select3() {
         $("#S3").html("");
-        $("#S3").append("<option value=\"\">-请选择-</option>");
+        $("#S3").append("<option value=\"\"> 请选择 </option>");
 
         // 判断省份有没有
         if($('#S2').val()){
             $.ajax(
                     {
                         type: "post",
-                        url: "__WEB_ROOT__/Api/cityArea/getJson",
+                        url: "__WEB_ROOT__/index.php?g=api&m=cityArea&a=getJson",
                         data: { "type": "2", "parent": $('#S2').val() },
                         success: function (msg) {
                             var areas = eval(msg);
