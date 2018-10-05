@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    //全局变量
+    var GV = {
+        ROOT: "__ROOT__/",
+        WEB_ROOT: "__WEB_ROOT__/",
+        JS_ROOT: "public/js/"
+    };
+</script>
+<!-- Le javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/wind.js"></script>
+<script src="__TMPL__Public/assets/simpleboot/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+
+        // 垂直居中
+        $('#alertModal').on('shown.bs.modal', function (e) {
+            // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+            $(this).css('display', 'block');
+            var modalHeight=$(window).height() / 2 - $('#alertModal .modal-dialog').height() / 2;
+            $(this).find('.modal-dialog').css({'margin-top': modalHeight  });
+        });
+        // 重写alert 避免出现网址
+        window.alert = function(message){
+//            Wind.use("artDialog", function() {
+//                art.dialog({
+//                    id : new Date().getTime(),
+//                    // icon : "error",
+//                    title:"",
+//                    fixed : true,
+//                    lock : true,
+//                    background : "#CCCCCC",
+//                    opacity : 0,
+//                    content : message,
+//                    ok : function() {
+//                        return true;
+//                    }
+//                });
+//            });
+
+            $('#alertModalMessage').text(message);
+            $('#alertModal').modal('toggle')
+        };
+
+    });
+</script>
