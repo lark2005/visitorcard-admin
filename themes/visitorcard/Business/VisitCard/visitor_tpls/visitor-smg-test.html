@@ -280,13 +280,13 @@
     <form method="post" id="form1"  action="{:leuu('business/visitCard/visitorSave')}">
 	<input type="hidden" name="card_id" value ="{$cardSetting.id}">
 	<input type="hidden" name="card_title" value ="{$cardSetting.card_title}">
-		<if condition="!empty($cardSetting.banner_url)">
+		<if condition="!empty($cardSetting['banner_url'])">
 		<!-- 轮播广告 -->
 		<div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
 			<img src="{$cardSetting.banner_url}" style="width:100%"></div>
 		</div>
 		</if>
-		<if condition="empty($cardSetting.banner_url) && !empty($cardSetting.page1_title)">
+		<if condition="empty($cardSetting['banner_url']) && !empty($cardSetting['page1_title'])">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title" style="text-align:center;width:100%;">{$cardSetting.page1_title}</h1>

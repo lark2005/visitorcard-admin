@@ -81,18 +81,23 @@ function generate_code($length = 6) {
      */
     function sendMsg_post($mobile,$content) {
 		// 短信通道地址
-		$url = "http://101.200.29.88:8082/SendMT/SendMessage";
-		// 发送参数
-		$param = array('CorpID'=>"username",'Pwd'=>"password");
+		$url = "http://114.118.2.242:8090/sms/sen.do";
+		// 发送参数  
+		$param = array('userid'=>"410408",'Pwd'=>"164489");
+		// yyyyMMddHHmmss
+		$param['timaspan'] = "110";
+		// y原始密码+时间 mD5 大写
+		$param['pwd'] = "110";
+		$param['msgfmt'] = "uTF-8";
 		// 通道号码末尾添加的扩展号码
-		$param['Cell'] = "110";
+		$param['ext'] = "110";
 		// 多个手机号码之间用英文“,”分开，最大支持1000个手机号码，同一请求中，最好不要出现相同的手机号码
-		$param['Mobile'] = "".$mobile;
-		// 短信内容，内容需要URL(UTF-8)编码
+		$param['mobile'] = "".$mobile;
+		// 短信内容，内容需要URL(UTF-8)编码 做base64加密
 		$urlencodeContent = $content;
 		// $urlencodeContent = utf8_encode($content);
 		// echo "urlencodeContent=".$urlencodeContent;
-		$param['Content'] = "".$urlencodeContent;
+		$param['content'] = "".$urlencodeContent;
 		
 		// 发送短信
         $data = request_post($url,$param);
