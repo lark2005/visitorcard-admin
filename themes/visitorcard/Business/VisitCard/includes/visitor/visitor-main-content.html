@@ -1,6 +1,9 @@
 <form method="post" id="form1"  action="{:leuu('business/visitCard/visitorSave')}">
 	<input type="hidden" name="card_id" value ="{$cardSetting.id}">
 	<input type="hidden" name="card_title" value ="{$cardSetting.card_title}">
+	<input type="hidden" id="selectCityUrl" value="{:leuu('Api/cityArea/getJson')}&t=new Date()">
+	<input type="hidden" id="sendUrl" value="{:leuu('business/visitCard/sendMsgCode')}">
+
 	<div id="page">
 		<div id="page_reg" class="pagemode" style="z-index: 2;">
 			<div id="reg_outer" style="margin-top: 0;">
