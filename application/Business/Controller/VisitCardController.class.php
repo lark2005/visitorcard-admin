@@ -239,7 +239,7 @@ class VisitCardController extends HomebaseController {
 				
 				// post发送短信
 				$resultArr['message'] = " ";
-				// echo "content=".$content;
+				echo "content=".$content;
 				$sendMsgData = sendMsg_post($mobile,$content);
 				$resultArr['data'] = "".$sendMsgData;
 				
