@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head id="Head1">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="apple-touch-fullscreen" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">
-	<meta charset="utf-8">
-	<meta name="Author" content="larker">
+<admintpl file="header"/>
+	<meta name="Author" content="lark2005">
 	<title>
 		{$cardSetting.card_title}-{$cardSetting.page1_title}
 	</title>
 	<link rel="apple-touch-icon" href="{$cardSetting.shortcut}">
 	<link rel="shortcut icon" href="{$cardSetting.shortcut}">
 	<link href="__TMPL__Public/assets/css/vistcard.css"  rel="stylesheet" type="text/css">
-	<script src="__PUBLIC__/js/jquery.js"></script>
 
     <style type="text/css">
 
@@ -31,7 +21,7 @@
 				async: false
 			});
 
-			$("#msg_send_button").click(function(){
+			$(".msg_send_button").click(function(){
 				if(sendMsgCode()){
 					time(this);
 				}
