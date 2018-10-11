@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <tc_include file="Public:head-vc" />
+	<title>
+		{$cardSetting.card_title}-{$cardSetting.page1_title}
+	</title>
+	<link rel="apple-touch-icon" href="{$cardSetting.shortcut}">
+	<link rel="shortcut icon" href="{$cardSetting.shortcut}">
+</head>
+<body style="max-width: 720px;margin:0 auto;">
+<div class="main">
+    <form role="form" method="post" id="form1"  action="{:leuu('business/visitCard/visitorSave')}">
+        <input type="hidden" name="card_id" value ="{$cardSetting.id}">
+        <input type="hidden" name="card_title" value ="{$cardSetting.card_title}">
+		<if condition="!empty($cardSetting['banner_url'])">
+            <!-- 轮播广告 -->
+            <div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+                <img src="{$cardSetting.banner_url}" style="width:100%">
+            </div>
+		</if>
+		<if condition="empty($cardSetting['banner_url']) && !empty($cardSetting['page1_title'])">
+            <header class="mui-bar mui-bar-nav">
+                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+                <h1 class="mui-title" style="text-align:center;width:100%;">{$cardSetting.page1_title}</h1>
+            </header>
+		</if>
+
+
+        <div id="page">
+            <div id="page_reg" class="pagemode" style="z-index: 2;">
+                <div id="reg_outer" style="margin-top: 0;">
+
+                    <div class="form-group" >
+                        <input class="form-control" name="company" id="company" placeholder="*{$cardSetting.filed_company_desc}" maxlength="40" type="text"></div>
+                    <div class="form-group" >
+                        <input  class="form-control" name="name" id="name" placeholder="*{$cardSetting.filed_name_desc}" maxlength="20" type="text"></div>
+                    <div class="form-group" >
+                        <input  class="form-control" name="position" id="position" placeholder="*{$cardSetting.filed_position_desc}" maxlength="20" type="text"></div>
+
+
+                    <div class="form-group row" >
+                        <input type="hidden" name="country" id = "country" value ="">
+                        <input type="hidden" name="province" id = "province" value ="">
+                        <input type="hidden" name="city" id = "city" value ="">
+                        <div class="col-xs-4" style="padding-right: 3px">
+                            <select id="S1" name="S1" class="form-control" >
+                            </select>
+                        </div>
+                        <div class="col-xs-4" style="padding: 0">
+                            <select id="S2" name="S2" class="form-control" >
+                                <option value="" selected="selected">-请选择-</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4" style="padding-left: 3px">
+                            <select id="S3" name="S3" class="form-control">
+                                <option value="" selected="selected">-请选择-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <input class="form-control" name="mobile" id="mobile" placeholder="*请输入手机号码" maxlength="11" type="text">
+                    </div>
+                    <div class="form-group row" >
+                        <div class="col-xs-4" >
+                        <input class="form-control" type="text" id="vcode" name="vcode" placeholder="验证码" value="" onfocus="this.value=''" onblur="if(this.value=='')this.value=''"/>
+                        </div>
+                        <div class="col-xs-8" >
+                            <label style="padding: 5px;background-color: #d7d7d7;" id="msg_send_button" title="发送验证码" >发送验证码</label>
+                        </div>
+                    </div>
+                    <input id="hidCountryFlag" value="" type="hidden">S
+                    <div style="margin-top: 1em; font-size: 12px; margin-left: 5%; color: #FF0000">
+                        重要信息，请认真填写。
+                    </div>
+                    <div class="form-group ">
+                            <input class="btn btn-primary form-control" type="submit" name="linkBtn" value="下一步" onclick="return checkform();" id="linkBtn">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body" ><label id="alertModalMessage">在这里添加一些文本</label></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<tc_include file="Public:scripts-vc" />
+<script src="__TMPL__Public/assets/js/visitorcard/visitor.js"></script>
+</body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head id="Head1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta charset="utf-8">
+	<meta name="Author" content="lark2005">
+	<title>
+		{$cardSetting.card_title}-{$cardSetting.page2_title}
+	</title>
+	<link rel="apple-touch-icon" href="{$cardSetting.shortcut}">
+	<link rel="shortcut icon" href="{$cardSetting.shortcut}">
+	<link href="__TMPL__Public/assets/mui/mui.min.css"  rel="stylesheet" type="text/css">
+	<link href="__TMPL__Public/assets/css/vistcard.css"  rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+<div class="main">
+<if condition="!empty($cardSetting['banner_url'])">
+    <!-- 轮播广告 -->
+    <div id="owl-demo" style="opacity: 1; display: block;">
+        <img src="{$cardSetting.banner_url}" style="width:100%">
+	</div>
+</if>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<if condition="!empty($cardSetting['page2_title']) && $cardSetting['page2_title'] !=''">
+		<h1 class="mui-title">{$cardSetting.page2_title}</h1>
+		<else />
+		<h1 class="mui-title">调查问卷</h1>
+		</if>
+	</header>
+	
+<form method="post" id="form1" action="{:leuu('business/visitCard/cardItemsSave')}">
+	<input type="hidden" name="card_id" value ="{$cardSetting.id}">
+	<input type="hidden" name="visitorId" value ="{$visitorId}">
+	
+	<div class="mui-content" style="height: 100%">
+		<if condition="1 eq 2">		
+        <h5 class="mui-content-padded"><a style="color:red">*</a>
+			<label id="la23">1.职业（单选）</label>
+		</h5>
+		<div class="mui-card">
+			<div class="mui-input-row mui-radio mui-left">
+				<label>董事/老板</label>
+				<input name="23" value="董事/老板" type="radio">
+			</div>
+			<div class="mui-input-row mui-radio mui-left">
+				<label>店长/经理</label>
+				<input name="23" value="店长/经理" type="radio">
+			</div>
+		</div>
+		
+		<h5 class="mui-content-padded"><a style="color:red">*</a>
+			<label id="la24">2.公司业务性质（可多选）</label>
+		</h5>
+		<div class="mui-card">
+			<form class="mui-input-group">
+				<div class="mui-input-row mui-checkbox mui-left">
+				<label>生产商</label><input name="24" value="生产商" type="checkbox"></div>
+				<div class="mui-input-row mui-checkbox mui-left">
+				<label>省级代理</label><input name="24" value="省级代理" type="checkbox"></div>
+				<div class="mui-input-row mui-checkbox mui-left"><label>市级代理</label>
+				<input name="24" value="市级代理" type="checkbox"></div>
+				<div class="mui-input-row mui-checkbox mui-left"><label>专营店</label>
+				<input name="24" value="专营店" type="checkbox"></div>
+
+				<div class="mui-input-row mui-checkbox mui-left">
+					<label>其他</label>
+					<input name="24" value="其他" type="checkbox">
+				</div>
+			</form>
+		</div>
+
+		</if>
+		
+		<volist name="dictCardItems" id="vo">
+			<php>
+				$taxonomy= $dictCards[$key]['taxonomy'];
+				// echo $taxonomy;
+				$selectShowName = "";
+				if ($taxonomy == "radiobox"){
+					$selectShowName = "（单选）";
+				}else if ($taxonomy == "checkbox"){
+					$selectShowName = "（多选）";
+				}
+			</php>
+			
+			<h5 class="mui-content-padded"><a style="color:red">*</a>
+			<label id="dictCards{$i}" title= "{$dictCards[$key].name}">{$i}.{$dictCards[$key].name} {$selectShowName}</label>
+			<input type="hidden" name="name{$key}" value="{$dictCards[$key].name}">
+			</h5>
+			<div class="mui-card">
+				<if condition="$taxonomy eq 'radio'">		
+					<foreach name="vo" item="item">
+					<div class="mui-input-row mui-radio mui-left">
+						<label>{$item.name}</label>
+						<input name="{$item.parent}" alt="{$i}" value="{$item.name}" type="radio" required>
+					</div>
+					</foreach>
+				</if>
+				<if condition="$taxonomy eq 'checkbox'">
+				<form class="mui-input-group">
+					<foreach name="vo" item="item">
+					<div class="mui-input-row mui-checkbox mui-left">
+						<label>{$item.name}</label>
+						<input name="{$item.parent}[]" alt="{$i}" value="{$item.name}" type="checkbox">
+					</div>
+					</foreach>
+				</form>
+				</if>
+				
+			</div>
+		</volist>
+   
+		<div style="text-align: center;">
+			<div class="submit_button_outer ">
+				<div class="page_submit_button" style="width: 100%; text-decoration: none;">
+					
+					<input value="完 成" onclick="return checkform();" id="lbtnOk2" class="page_submit_button submit_button" style="color:White;border-style:None;font-weight:bold;width:100%;background-color: #339Ca0;" type="submit">
+				</div>
+			</div>
+		</div>
+    </div>
+</form>
+</div>
+
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__TMPL__Public/assets/mui/mui.min.js"></script>
+<script src="__TMPL__Public/assets/js/visitorcard/card.js"></script>
+</body>
+</html>

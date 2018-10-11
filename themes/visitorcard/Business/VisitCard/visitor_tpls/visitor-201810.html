@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head id="Head1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta charset="utf-8">
+	<meta name="Author" content="lark2005">
+	<title>
+		{$cardSetting.card_title}-{$cardSetting.page1_title}
+	</title>
+	<link rel="apple-touch-icon" href="{$cardSetting.shortcut}">
+	<link rel="shortcut icon" href="{$cardSetting.shortcut}">
+	<link href="__TMPL__Public/assets/css/vistcard.css"  rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+    </style>
+
+</head>
+<body>
+<div class="main">
+    <form method="post" id="form1"  action="{:leuu('business/visitCard/visitorSave')}">
+	<input type="hidden" name="card_id" value ="{$cardSetting.id}">
+	<input type="hidden" name="card_title" value ="{$cardSetting.card_title}">
+		<if condition="!empty($cardSetting['banner_url'])">
+		<!-- 轮播广告 -->
+		<div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+			<img src="{$cardSetting.banner_url}" style="width:100%"></div>
+		</div>
+		</if>
+		<if condition="empty($cardSetting['banner_url']) && !empty($cardSetting['page1_title'])">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="text-align:center;width:100%;">{$cardSetting.page1_title}</h1>
+		</header>
+		</if>
+    <div id="page">
+        <div id="page_reg" class="pagemode" style="z-index: 2;">
+            <div id="reg_outer" style="margin-top: 0;">
+                <div class="page_login_input" >
+                    <input name="company" id="company" placeholder="*{$cardSetting.filed_company_desc}" maxlength="40" type="text"></div>
+                <div class="page_login_input" >
+                    <input name="name" id="name" placeholder="*{$cardSetting.filed_name_desc}" maxlength="20" type="text"></div>
+                <div class="page_login_input" >
+                    <input name="position" id="position" placeholder="*{$cardSetting.filed_position_desc}" maxlength="20" type="text"></div>
+
+                <div class="page_login_input" >
+					<input type="hidden" name="country" id = "country" value ="">
+					<input type="hidden" name="province" id = "province" value ="">
+					<input type="hidden" name="city" id = "city" value ="">
+                    <select id="S1" name="S1" class="shortselect1" >
+					</select>
+                    <select id="S2" name="S2" class="shortselect2" >
+					<option value="" selected="selected">-请选择-</option>
+					</select>
+                    <select id="S3" name="S3" class="shortselect3">
+					<option value="" selected="selected">-请选择-</option>
+					</select>
+				</div>
+                <div class="page_login_input" >
+                    <input name="mobile" id="mobile" placeholder="*请输入手机号码" maxlength="11" type="text">
+				</div>
+				<div class="page_login_msg_input" >
+                    <input class=" msg_send_input" type="text" id="vcode" name="vcode" placeholder="验证码" value="" onfocus="this.value=''" onblur="if(this.value=='')this.value=''"/>
+					<span class=" msg_send_button" id="msg_send_button" title="发送测试验证码" >发送验证码</span>
+				</div>
+					<input id="hidCountryFlag" value="" type="hidden">
+                <div style="margin-top: 1em; font-size: 12px; margin-left: 5%; color: #FF0000">
+                    重要信息，请认真填写。
+                </div>
+                <div class="login_button_outer ">
+                    <div class="page_login_button login_button" style="width: 100%; text-decoration: none;">
+
+                        <input name="linkBtn" value="下一步" onclick="return checkform();" id="linkBtn" class="page_login_button login_button" style="color:White;border-style:None;font-weight:bold;width:100%;" type="submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__TMPL__Public/assets/js/visitorcard/visitor.js"></script>
+</body></html>
