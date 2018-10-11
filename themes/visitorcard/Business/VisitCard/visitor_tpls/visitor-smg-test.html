@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<admintpl file="header"/>
+<head id="Head1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -16,6 +16,7 @@
 	<link rel="shortcut icon" href="{$cardSetting.shortcut}">
 	<link href="__TMPL__Public/assets/css/vistcard.css"  rel="stylesheet" type="text/css">
 	<script src="__PUBLIC__/js/jquery.js"></script>
+
     <style type="text/css">
 
     </style>
@@ -56,7 +57,10 @@
                 });
             };
 
+
         });
+
+
     </script>
     <script type="text/javascript">
 		// 倒计时间
@@ -320,7 +324,7 @@
 				</div>
 				<div class="page_login_msg_input" >
                     <input class=" msg_send_input" type="text" id="vcode" name="vcode" placeholder="验证码" value="" onfocus="this.value=''" onblur="if(this.value=='')this.value=''"/>
-					<span class=" msg_send_button" id="msg_send_button" title="发送验证码" >发送验证码</span>
+					<span class=" msg_send_button" id="msg_test_button" title="发送验证码" >发送验证码</span>
 				</div>
 					<input id="hidCountryFlag" value="" type="hidden">
                 <div style="margin-top: 1em; font-size: 12px; margin-left: 5%; color: #FF0000">
