@@ -1,0 +1,18 @@
+<div class="my-card">
+	<div class="bmcg">
+		<div class="bmcg-title">恭喜您注册成功</div>
+		<div  class="bmcg-hint">请在参观证领取处出示此页面领取参观证</div>
+	</div>
+
+	<div class="bmcg">
+		<div class="bmcg-name">{$visitor.name}</div>
+		<div class="bmcg-company">{$visitor.company}</div>
+	</div>
+	<div class="bmcg">
+		<div class="bmcg-erwm">
+			<php>
+				qrcode_show('['.$visitor['name']."][".$visitor['company']."][".substr_replace($visitor['mobile'],'****',3,4)."]",$visitor['mobile']);
+			</php>
+		</div>
+	</div>
+</div>
