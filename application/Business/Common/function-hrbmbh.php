@@ -41,7 +41,7 @@ function request_post($url = '', $param) {
 		$arr_n=count($param)-1;
 		foreach ( $param as $k => $v )
 		{
-			echo "$k=" .  ($v );
+			// echo "$k=" .  ($v );
 			$curlPost .= "$k=" .  ($v );
 			if($arr_n!=$i){
 				$curlPost .= "&" ;
@@ -51,7 +51,7 @@ function request_post($url = '', $param) {
 	}else{
 		$curlPost = $param;
 	}
-	echo $curlPost;
+	// echo $curlPost;
 
 	// $curlPost = $param;
 	// echo $curlPost;
@@ -81,6 +81,7 @@ function request_post($url = '', $param) {
  * @param string $content
  */
 function sendMsg_post($mobile,$content) {
+	// 查询剩余条数 ：http://114.118.2.242:8090/sms/balance.do?userid=410408&timespan=20181012093357&pwd=F9EFF2D49297B7628C0B4A10841E4BD7
 	// 短信通道地址
 	$url = "http://114.118.2.242:8090/sms/send.do";
 	// 发送参数
@@ -104,10 +105,12 @@ function sendMsg_post($mobile,$content) {
 	// 多个手机号码之间用英文“,”分开，最大支持1000个手机号码，同一请求中，最好不要出现相同的手机号码
 	$param['mobile'] = "".$mobile;
 	// 短信内容，内容需要URL(UTF-8)编码 做base64加密
-	$urlencodeContent = base64_encode($content);
-	echo "执行发送短信 urlencodeContent=".$urlencodeContent;
+	// 添加签名 [哈尔滨美博会]
+	$urlencodeContent = base64_encode("[哈尔滨美博会]".$content);
+	// echo "执行发送短信 urlencodeContent=".$urlencodeContent;
 	// $urlencodeContent = utf8_encode($content);
 	// echo "urlencodeContent=".$urlencodeContent;
+
 	$param['content'] = "".$urlencodeContent;
 	// echo "执行发送短信 ,param=".$param;
 	// 发送短信
