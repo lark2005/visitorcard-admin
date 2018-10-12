@@ -554,3 +554,9 @@ body {
 .code_send_button{
 	padding-left:10px;
 }
+.hintInfo{
+    margin-top: 1em;
+    font-size: 12px;
+    margin-left: 5%;
+    color: #FF0000
+}

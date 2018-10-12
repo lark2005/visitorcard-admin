@@ -49,7 +49,6 @@
 									$visitor_tpls=sp_admin_get_visitcard_tpl_file_list('visitor_tpls');
 									</php>
 				              		<select  name="visitor_tpl">
-										<option value="" >--</option>
 				              			<foreach name="visitor_tpls" item="vo">
 										<php>
 										$visitor_tpls_selected=$data['visitor_tpl']==$vo?"selected":"";
@@ -132,7 +131,13 @@
 								<div class="controls">
 									<input type="text" name="filed_position_desc" value="{$data.filed_position_desc}"><span class="form-required">*</span>
 								</div>
-							</div>	
+							</div>
+							<div class="control-group">
+								<label class="control-label">{:L('page1_body_style')}</label>
+								<div class="controls">
+									<input type="text" name="page1_body_style" value="{$data.page1_body_style}">
+								</div>
+							</div>
 
 						</fieldset>
 		          </div>
