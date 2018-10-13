@@ -4,8 +4,7 @@
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="{:U('AdminVisitor/index')}">{:L('ADMIN_VISITOR_INDEX')}</a></li>
-			<!-- <li><a href="{:U('user/add')}">{:L('ADMIN_VISITOR_ADD')}</a></li>
-			-->
+
 		</ul>
         <form id="form" class="well form-search" method="post" action="{:U('AdminVisitor/index')}">
 		    {:L('CARD_TITLE')}:
@@ -42,10 +41,7 @@
 					<th>{:L('AREA')}</th>
 					<th>{:L('wx_openid')}</th>
 					<th>{:L('CREATE_TIME')}</th>
-					<!--<th>{:L('LAST_LOGIN_TIME')}</th>-->
-					<!--
-					<th width="120">{:L('ACTIONS')}</th>
-					-->
+
 				</tr>
 			</thead>
 			<tbody>
@@ -67,32 +63,7 @@
 							{$vo.create_time}
 						</if>
 					</td>
-					<!--<td>-->
-						<!--<if condition="$vo['last_login_time'] eq 0">-->
-							<!--{:L('USER_HAVENOT_LOGIN')}-->
-						<!--<else />-->
-							<!--{$vo.last_login_time}-->
-						<!--</if>-->
-					<!--</td>-->
-					<!--
-					<td>
-						<if condition="$vo['id'] eq 1 || $vo['id'] eq sp_get_current_admin_id()">
-						<font color="#cccccc">{:L('EDIT')}</font> |
-							<if condition="$vo['user_status'] eq 1">
-								<font color="#cccccc">{:L('BLOCK_USER')}</font>
-							<else />
-								<font color="#cccccc">{:L('ACTIVATE_USER')}</font>
-							</if>
-						<else />
-							<a href='{:U("user/edit",array("id"=>$vo["id"]))}'>{:L('EDIT')}</a> |
-							<if condition="$vo['user_status'] eq 1">
-								<a href="{:U('user/ban',array('id'=>$vo['id']))}" class="js-ajax-dialog-btn" data-msg="{:L('BLOCK_USER_CONFIRM_MESSAGE')}">{:L('BLOCK_USER')}</a>
-							<else />
-								<a href="{:U('user/cancelban',array('id'=>$vo['id']))}" class="js-ajax-dialog-btn" data-msg="{:L('ACTIVATE_USER_CONFIRM_MESSAGE')}">{:L('ACTIVATE_USER')}</a>
-							</if>
-						</if>
-					</td>
-					-->
+
 				</tr>
 				</foreach>
 			</tbody>
@@ -101,15 +72,11 @@
 	</div>
 	<script src="__PUBLIC__/js/common.js"></script>
 <script>
-	<!-- 导出excel -->
+
 	$("#exportVisitors").click(function(){
-		// {:U('AdminVisitor/exportVisitors',array('query_card_title'=>$vo['id']))}
-		// $("#exportVisitors").href
-		// 数据封装
 		var exportUrl = "{:U('AdminVisitor/exportVisitors')}";
 		var exportData =  $("form").serialize();
-		exportUrl= exportUrl+"&"+exportData
-		// alert(exportUrl);
+		exportUrl= exportUrl+"&"+exportData;
 		if($('#exportIframe').length >0){
 			$('#exportIframe').remove();
 		}
