@@ -74,13 +74,15 @@
 <script>
 
 	$("#exportVisitors").click(function(){
-		var exportUrl = "{:U('AdminVisitor/exportVisitors')}";
-		var exportData =  $("form").serialize();
-		exportUrl= exportUrl+"&"+exportData;
-		if($('#exportIframe').length >0){
-			$('#exportIframe').remove();
+		if (confirm("确认导出？")){
+			var exportUrl = "{:U('AdminVisitor/exportVisitors')}";
+			var exportData =  $("form").serialize();
+			exportUrl= exportUrl+"&"+exportData;
+			if($('#exportIframe').length >0){
+				$('#exportIframe').remove();
+			}
+			$('body').append('<iframe id="exportIframe" width="0" height="0" src="'+exportUrl+'"></iframe>');
 		}
-		$('body').append('<iframe id="exportIframe" width="0" height="0" src="'+exportUrl+'"></iframe>');
 	})
 </script>
 </body>
