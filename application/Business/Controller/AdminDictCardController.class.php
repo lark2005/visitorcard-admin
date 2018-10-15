@@ -126,7 +126,10 @@ class AdminDictCardController extends AdminDictionaryController {
 			if ($this->dictionary_model->create()!==false) {
 				if ($this->dictionary_model->add()!==false) {
 				    F('all_dictionary',null);
-					$this->success("添加成功！",U("AdminDictCard/index"));
+					$query_dic = I('request.path');
+					$this->success("添加成功！",U("AdminDictCard/index","query_dic=".$query_dic));
+//					$this->success("添加成功！");
+//					$this->index();
 				} else {
 					$this->error("添加失败！");
 				}
@@ -166,7 +169,9 @@ class AdminDictCardController extends AdminDictionaryController {
 			if ($this->dictionary_model->create()!==false) {
 				if ($this->dictionary_model->save()!==false) {
 				    F('all_dictionary',null);
-					$this->success("修改成功！");
+//					$this->success("修改成功！");
+					$query_dic = $this->dictionary_model;
+					$this->success("添加成功！",U("AdminDictCard/index","query_dic=".$query_dic));
 				} else {
 					$this->error("修改失败了！");
 				}
