@@ -278,7 +278,7 @@ function qrcode_show($url="larkersos.com",$fileName="myRQcode",$level=3,$size=4)
 	$errorCorrectionLevel = 'L';//容错级别 
 	$matrixPointSize = 6;//生成图片大小 
 	//生成二维码图片 
-	$filePathSrc = 'data/rqcode/'.$fileName.'-src.png';
+	$filePathSrc = 'data/rqcode/'.$fileName.'.png';
 	QRcode::png($value, $filePathSrc, $errorCorrectionLevel, $matrixPointSize, 2);
 	$logo = 'logo.png';//准备好的logo图片 
 	$QR = $filePathSrc;//已经生成的原始二维码图 
@@ -299,7 +299,7 @@ function qrcode_show($url="larkersos.com",$fileName="myRQcode",$level=3,$size=4)
 			$logo_qr_height, $logo_width, $logo_height);
 	}
 	//输出图片 
-	$filePath = 'data/rqcode/'.generate_code(11).'.png';
+	$filePath = 'data/rqcode/'.$fileName.'.png';
 	imagepng($QR,$filePath );
 	echo '<img src="'.$filePath.'">';
 }
